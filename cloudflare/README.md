@@ -1,10 +1,25 @@
 # ⚡ HƯỚNG DẪN TRIỂN KHAI CLOUDFLARE WORKER CHO IPTV BLV
 
-Giải pháp chạy **Serverless Edge M3U Generator** trên Cloudflare Worker hoàn toàn miễn phí (100.000 requests/ngày), tự động đồng bộ tên trận đấu trực tiếp của BLV theo thời gian thực (Real-time), không cần chạy GitHub Actions, không làm rác commit Git và không lo bị khóa IP.
+Giải pháp chạy **Serverless Edge M3U Generator & Web Player** trên Cloudflare Worker hoàn toàn miễn phí (100.000 requests/ngày), tự động đồng bộ tên trận đấu trực tiếp của BLV theo thời gian thực (Real-time), không cần chạy GitHub Actions, không làm rác commit Git và không lo bị khóa IP.
 
 ---
 
-## 📌 1. Các Biến Môi Trường Động (Environment Variables)
+## 🌟 1. Các Tính Năng Nâng Cấp Mới Nhất
+
+1. **Thứ tự ưu tiên kênh thông minh (Live First)**:
+   * **Thứ tự sắp xếp**: `Kênh đang LIVE (Rank 1 ➔ 12)` ➔ `Kênh chưa đá (Rank 1 ➔ 12)`.
+   * Mở TiviMate/OTT lên là thấy ngay BLV nào đang có trận đấu ở các vị trí đầu tiên, không cần phải cuộn tìm kiếm.
+2. **Hiển thị lịch trận sắp đá trong 6 tiếng tới**:
+   * Nếu trận đấu sắp diễn ra trong vòng 6 giờ tới, tên kênh sẽ tự động đổi thành: `⏳ [HH:MM] Tên Trận (BLV)`.
+   * Ví dụ: `⏳ [03:00] Atletico Madrid vs FC Bayern Munich (Gà Siêu Quỷ)`.
+3. **Tích hợp Web Player trực tiếp trên Dashboard (`/`)**:
+   * Truy cập trang chủ Worker trên trình duyệt bất kỳ (điện thoại/máy tính) để **xem trực tiếp** luồng phát bằng trình phát tích hợp (hỗ trợ cả HLS `.m3u8` qua `Hls.js` và FLV `.flv` qua `mpegts.js`).
+4. **Bộ tạo Link IPTV tùy chỉnh bằng Checkbox**:
+   * Ngay trên giao diện web Dashboard, bạn có thể chọn các bộ lọc (chỉ lấy Live, chỉ lấy HLS, chỉ lấy FLV) và sao chép link M3U tùy biến chỉ bằng 1 cú nhấp chuột.
+
+---
+
+## 📌 2. Các Biến Môi Trường Động (Environment Variables)
 
 Toàn bộ các thông số nhạy cảm và tên miền dễ thay đổi đều được đưa thành **Biến môi trường (Env Vars)**:
 
@@ -18,7 +33,21 @@ Toàn bộ các thông số nhạy cảm và tên miền dễ thay đổi đều
 
 ---
 
-## 🚀 2. Cách Triển Khai (Chọn 1 trong 2 cách)
+## 🛠️ 3. Các Tham Số URL Tùy Chỉnh (Query Parameters)
+
+Bạn có thể gắn thêm tham số vào cuối bất kỳ link playlist nào:
+
+| Tham Số | Ví Dụ URL | Chức Năng |
+| :--- | :--- | :--- |
+| **`live_only=true`** | `/gv.m3u?live_only=true` | **Chỉ lấy các kênh đang có trận đấu trực tiếp** (ẩn toàn bộ kênh đang nghỉ). |
+| **`type=hls`** | `/gv.m3u?type=hls` | **Chỉ lấy luồng HLS** (rất hữu ích cho Apple TV, iOS hoặc thiết bị không chạy được FLV). |
+| **`type=flv`** | `/gv.m3u?type=flv` | **Chỉ lấy luồng FLV** (độ trễ thấp cho Android TV Box có software decoder). |
+| **`sort=rank`** | `/gv.m3u?sort=rank` | Giữ nguyên thứ tự rank gốc 1 ➔ 12 (tắt tính năng đẩy Live lên đầu). |
+| **Kết hợp nhiều tham số** | `/gv.m3u?live_only=true&type=hls` | Chỉ lấy các trận đang Live chạy luồng HLS. |
+
+---
+
+## 🚀 4. Cách Triển Khai (Chọn 1 trong 2 cách)
 
 ### Cách 1: Thao tác trực tiếp trên giao diện Web Cloudflare (Khuyên dùng - Nhanh nhất, 2 phút)
 
@@ -57,16 +86,11 @@ Nếu bạn đã có tài khoản Cloudflare và muốn deploy trực tiếp t�
 
 ---
 
-## 📺 3. Các Đường Dẫn URL Sau Khi Triển Khai
-
-Sau khi deploy, bạn sẽ nhận được một đường dẫn có dạng:
-`https://<ten-worker>.<subdomain>.workers.dev` (ví dụ: `https://iptv-blv.yourname.workers.dev`).
-
-Worker hỗ trợ đầy đủ các đường dẫn sau:
+## 📺 5. Danh Sách URL Endpoint Sau Khi Triển Khai
 
 | Tên Danh Mục | Định dạng `.m3u` | Direct File (TiviMate / OTT) |
 | :--- | :--- | :--- |
-| **🌐 Web Dashboard** | `https://<worker-domain>/` *(Mở trên trình duyệt để copy link 1 chạm)* | — |
+| **🌐 Web Dashboard & Player** | `https://<worker-domain>/` *(Xem trực tiếp trên Web + Copy link)* | — |
 | **⚽ Tổng Hợp BLV (137 Kênh)** | `https://<worker-domain>/sport.m3u` | `https://<worker-domain>/sport` |
 | **🐔 Gà Vàng 33 (Gộp SV1 + SV2)** | `https://<worker-domain>/gv.m3u` | `https://<worker-domain>/gv` |
 | **🐔 Gà Vàng 33 (Server 1 HLS)** | `https://<worker-domain>/gv_sv1.m3u` | `https://<worker-domain>/gv_sv1` |
@@ -76,11 +100,3 @@ Worker hỗ trợ đầy đủ các đường dẫn sau:
 | **🐔 Gà Vàng 24H** | `https://<worker-domain>/gavang24.m3u` | `https://<worker-domain>/gavang24` |
 | **🏟️ Khán Đài TV** | `https://<worker-domain>/khandai.m3u` | `https://<worker-domain>/khandai` |
 | **🥣 Xôi Chè TV** | `https://<worker-domain>/xoiche.m3u` | `https://<worker-domain>/xoiche` |
-
----
-
-## 💡 Ưu Điểm So Với Cơ Chế Cũ
-
-1. **Thời gian thực (Real-time)**: BLV vừa bắt đầu bình luận trận đấu mới, chỉ tối đa 3 phút sau là toàn bộ TV Box / TiviMate sẽ hiển thị tên trận đấu (`Arsenal vs Chelsea`).
-2. **Không tốn tài nguyên GitHub**: Không chạy GitHub Actions định kỳ, không tạo commit rác vào repo.
-3. **Linh hoạt tuyệt đối**: Khi Gà Vàng đổi tên miền website, bạn chỉ cần 5 giây vào Cloudflare Dashboard sửa lại giá trị `GAVANG_REFERER`.
