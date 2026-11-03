@@ -271,9 +271,9 @@ function renderDashboard(host, liveMap, upcomingMap, blvList, envConfig) {
 
   const endpoints = [
     { title: "⚽ Tổng Hợp BLV Tiếng Việt", name: "sport", path: "/sport.m3u", count: "137 kênh" },
-    { title: "🐔 Gà Vàng 33 (Gộp SV1 + SV2)", name: "gv", path: "/gv.m3u", count: "24 kênh (HLS + FLV)" },
-    { title: "🐔 Gà Vàng 33 (Server 1 HLS)", name: "gv_sv1", path: "/gv_sv1.m3u", count: "12 kênh (HLS)" },
-    { title: "🐔 Gà Vàng 33 (Server 2 FLV)", name: "gv_sv2", path: "/gv_sv2.m3u", count: "12 kênh (FLV)" },
+    { title: "🐔 Gà Vàng 33 (SV1 + SV2)", name: "gv", path: "/gv.m3u", count: "24 kênh" },
+    { title: "🐔 Gà Vàng 33 (Server 1 HLS)", name: "gv_sv1", path: "/gv_sv1.m3u", count: "12 kênh" },
+    { title: "🐔 Gà Vàng 33 (Server 2 FLV)", name: "gv_sv2", path: "/gv_sv2.m3u", count: "12 kênh" },
     { title: "🥤 Cola TV", name: "cola", path: "/cola.m3u", count: "79 kênh" },
     { title: "🐔 Gà Vàng 33 (Gốc)", name: "gavang33", path: "/gavang33.m3u", count: "21 kênh" },
     { title: "🐔 Gà Vàng 24H", name: "gavang24", path: "/gavang24.m3u", count: "18 kênh" },
@@ -305,18 +305,10 @@ function renderDashboard(host, liveMap, upcomingMap, blvList, envConfig) {
     }
     *, *::before, *::after {
       box-sizing: border-box;
-      touch-action: manipulation;
     }
     html {
-      overflow-x: hidden !important;
-      width: 100% !important;
-      max-width: 100vw !important;
-    }
-    html, body {
-      touch-action: manipulation;
+      min-height: 100%;
       -webkit-text-size-adjust: 100%;
-      -webkit-tap-highlight-color: transparent;
-      overscroll-behavior-y: none;
     }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -325,9 +317,9 @@ function renderDashboard(host, liveMap, upcomingMap, blvList, envConfig) {
       margin: 0;
       padding: 16px 20px;
       line-height: 1.5;
-      overflow-x: hidden !important;
-      width: 100% !important;
-      max-width: 100vw !important;
+      overflow-x: hidden;
+      min-height: 100vh;
+      -webkit-tap-highlight-color: transparent;
     }
     
     /* 2K Screen Max-width layout */
@@ -335,8 +327,6 @@ function renderDashboard(host, liveMap, upcomingMap, blvList, envConfig) {
       max-width: 1400px;
       margin: 0 auto;
       width: 100%;
-      max-width: 100%;
-      overflow-x: hidden;
     }
     @media (min-width: 2000px) {
       .container { max-width: 1680px; padding: 24px 30px; }
@@ -447,31 +437,32 @@ function renderDashboard(host, liveMap, upcomingMap, blvList, envConfig) {
       .channel-grid { grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 18px; }
     }
 
-    .ch-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; display: flex; align-items: center; gap: 12px; transition: all 0.2s ease; position: relative; cursor: pointer; width: 100%; max-width: 100%; min-width: 0; overflow: hidden; }
-    .ch-card:hover { background: var(--card-hover); border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.4); }
+    .ch-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; display: flex; align-items: center; gap: 12px; transition: all 0.2s ease; position: relative; cursor: pointer; width: 100%; max-width: 100%; min-width: 0; }
+    .ch-card:hover { background: var(--card-hover); border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.4); z-index: 50; }
     .ch-card.is-live { border-left: 4px solid var(--red); background: #161e2e; }
     .ch-card.is-upcoming { border-left: 4px solid var(--amber); }
     .ch-card.is-playing { border-color: var(--accent); box-shadow: 0 0 16px rgba(56, 189, 248, 0.4); }
     .ch-logo { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; background: #1e293b; border: 2px solid var(--border); flex-shrink: 0; }
     
-    .ch-info { flex: 1; min-width: 0; overflow: hidden; }
+    .ch-info { flex: 1; min-width: 0; }
 
     /* Match Label with Full Tooltip */
-    .tooltip-wrapper { position: relative; display: block; width: 100%; min-width: 0; overflow: hidden; }
+    .tooltip-wrapper { position: relative; display: block; width: 100%; min-width: 0; }
     .ch-name { font-weight: 700; font-size: 14px; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; color: #fff; min-width: 0; }
     
     .custom-tooltip {
       visibility: hidden; opacity: 0; position: absolute; bottom: calc(100% + 10px); left: 0;
       transform: translateY(6px); background: #070b14; color: #f8fafc; border: 1px solid var(--accent);
       padding: 10px 14px; border-radius: 8px; font-size: 13px; line-height: 1.4;
-      width: max-content; max-width: 380px; box-shadow: 0 10px 30px rgba(0,0,0,0.85);
+      width: max-content; max-width: 340px; box-shadow: 0 10px 30px rgba(0,0,0,0.85);
       z-index: 999; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .custom-tooltip::after {
       content: ""; position: absolute; top: 100%; left: 24px; border-width: 6px; border-style: solid;
       border-color: var(--accent) transparent transparent transparent;
     }
-    .tooltip-wrapper:hover .custom-tooltip { visibility: visible; opacity: 1; transform: translateY(0); }
+    .tooltip-wrapper:hover .custom-tooltip,
+    .ch-info:hover .custom-tooltip { visibility: visible; opacity: 1; transform: translateY(0); }
     .tooltip-header { font-size: 11px; font-weight: 800; text-transform: uppercase; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
     .tooltip-match { font-size: 14px; font-weight: 700; color: #38bdf8; margin-bottom: 4px; }
     .tooltip-extra { font-size: 12px; color: var(--text-dim); }
@@ -494,11 +485,11 @@ function renderDashboard(host, liveMap, upcomingMap, blvList, envConfig) {
     .filter-option input { cursor: pointer; accent-color: #38bdf8; }
 
     /* Playlist URLs */
-    .url-item { background: #0b1120; border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
-    .url-info { min-width: 220px; flex: 0 0 auto; display: flex; align-items: center; gap: 8px; }
-    .url-name { font-weight: 600; font-size: 14px; color: #fff; }
-    .url-badge { font-size: 11px; color: var(--text-dim); background: #1e293b; padding: 2px 7px; border-radius: 4px; white-space: nowrap; }
-    .url-actions { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
+    .url-item { background: #0b1120; border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 14px; }
+    .url-info { width: 340px; flex: 0 0 340px; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-shrink: 0; }
+    .url-name { font-weight: 600; font-size: 14px; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .url-badge { font-size: 11px; color: var(--text-dim); background: #1e293b; padding: 2px 7px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; }
+    .url-actions { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
     .url-box { flex: 1; min-width: 0; font-family: monospace; font-size: 12px; color: #4ade80; background: #070b14; padding: 8px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.06); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; user-select: all; -webkit-user-select: all; }
     .btn-copy { background: #2563eb; color: #fff; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 700; transition: all 0.2s; white-space: nowrap; flex-shrink: 0; display: inline-flex; align-items: center; gap: 4px; }
     .btn-copy:hover { background: #1d4ed8; }
@@ -509,9 +500,6 @@ function renderDashboard(host, liveMap, upcomingMap, blvList, envConfig) {
     @media (max-width: 768px) {
       body {
         padding: 10px 8px;
-        overflow-x: hidden !important;
-        width: 100% !important;
-        max-width: 100vw !important;
       }
       header { margin-bottom: 14px; padding-bottom: 10px; width: 100%; overflow: hidden; }
       h1 { font-size: 18px !important; }
@@ -575,8 +563,11 @@ function renderDashboard(host, liveMap, upcomingMap, blvList, envConfig) {
       }
       .url-info {
         min-width: 0;
-        width: 100%;
+        width: 100% !important;
+        flex: none !important;
+        display: flex;
         justify-content: space-between;
+        align-items: center;
       }
       .url-name { font-size: 13px; }
       .url-actions {
