@@ -42,7 +42,6 @@ Bạn có thể gắn thêm tham số vào cuối bất kỳ link playlist nào:
 | **`live_only=true`** | `/gv.m3u?live_only=true` | **Chỉ lấy các kênh đang có trận đấu trực tiếp** (ẩn toàn bộ kênh đang nghỉ). |
 | **`type=hls`** | `/gv.m3u?type=hls` | **Chỉ lấy luồng HLS** (rất hữu ích cho Apple TV, iOS hoặc thiết bị không chạy được FLV). |
 | **`type=flv`** | `/gv.m3u?type=flv` | **Chỉ lấy luồng FLV** (độ trễ thấp cho Android TV Box có software decoder). |
-| **`sort=rank`** | `/gv.m3u?sort=rank` | Giữ nguyên thứ tự rank gốc 1 ➔ 12 (tắt tính năng đẩy Live lên đầu). |
 | **Kết hợp nhiều tham số** | `/gv.m3u?live_only=true&type=hls` | Chỉ lấy các trận đang Live chạy luồng HLS. |
 
 ---
