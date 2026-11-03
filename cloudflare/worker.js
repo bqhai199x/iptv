@@ -307,9 +307,9 @@ function renderDashboard(host, liveMap, upcomingMap, blvList, envConfig) {
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px 24px; line-height: 1.5; }
     
     /* 2K Screen Max-width layout */
-    .container { max-width: 1600px; margin: 0 auto; }
+    .container { max-width: 1400px; margin: 0 auto; }
     @media (min-width: 2000px) {
-      .container { max-width: 2300px; padding: 30px 40px; }
+      .container { max-width: 1680px; padding: 30px 40px; }
       body { padding: 30px 40px; }
     }
 
@@ -318,9 +318,26 @@ function renderDashboard(host, liveMap, upcomingMap, blvList, envConfig) {
     .meta { color: var(--text-dim); font-size: 13px; display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
     .meta b { color: var(--text); }
 
-    /* Web Player Section */
-    .player-wrapper { background: #000; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 28px; box-shadow: 0 10px 30px rgba(0,0,0,0.7); }
-    .video-container { position: relative; width: 100%; aspect-ratio: 16/9; max-height: 820px; background: #070b12; display: flex; align-items: center; justify-content: center; }
+    /* Web Player Section - Chuẩn 16:9, tự động co giãn theo viewport, không bị bè hay kéo dài */
+    .player-wrapper {
+      background: #000;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin: 0 auto 28px auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+      width: 100%;
+      max-width: min(100%, calc((100vh - 240px) * 16 / 9), 1360px);
+    }
+    .video-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #070b12;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     video { width: 100%; height: 100%; display: block; object-fit: contain; }
     
     .player-bar { background: var(--card-bg); padding: 14px 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; border-top: 1px solid var(--border); }
@@ -341,9 +358,9 @@ function renderDashboard(host, liveMap, upcomingMap, blvList, envConfig) {
 
     /* Channel Cards Grid */
     .section-title { font-size: 19px; font-weight: 700; margin: 28px 0 14px 0; color: #f8fafc; display: flex; align-items: center; justify-content: space-between; }
-    .channel-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 16px; margin-bottom: 28px; }
+    .channel-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin-bottom: 28px; }
     @media (min-width: 2000px) {
-      .channel-grid { grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 20px; }
+      .channel-grid { grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 18px; }
     }
 
     .ch-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 14px; display: flex; align-items: center; gap: 14px; transition: all 0.2s ease; position: relative; }
@@ -434,7 +451,7 @@ function renderDashboard(host, liveMap, upcomingMap, blvList, envConfig) {
 
     <!-- Quick Play Grid (12 BLV Gà Vàng) -->
     <div class="section-title">
-      <span>📺 Kênh Gà Vàng 33 (Tự động đưa Live lên đầu)</span>
+      <span>📺 Kênh Gà Vàng 33</span>
       <span style="font-size:13px; color:var(--text-dim);">Hover để xem đầy đủ thông tin trận đấu</span>
     </div>
     <div class="channel-grid">
