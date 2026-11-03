@@ -2,6 +2,11 @@
 
 Tổng hợp các luồng phát trực tiếp Thể thao & Bình luận viên (BLV) tiếng Việt chất lượng cao. Hỗ trợ đầy đủ định dạng **.m3u** và **Direct File** (không đuôi) cho các ứng dụng IPTV.
 
+> [!TIP]
+> ⚡ **Bạn muốn playlist cập nhật tên trận đấu Real-time 100% không cần chờ GitHub Actions?**
+> Hãy sử dụng giải pháp **Cloudflare Worker (Miễn phí)** tại thư mục [cloudflare/](cloudflare/README.md) hỗ trợ cấu hình biến môi trường động GAVANG_REFERER và Edge Cache cực nhanh!
+
+
 ---
 
 ## 🔗 1. DANH SÁCH LINK NGUỒN

@@ -1,0 +1,24 @@
+# Cloudflare Wrangler Configuration for IPTV Worker
+name = "iptv-worker"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+# Biến môi trường động (Dynamic Environment Variables)
+[vars]
+# Domain Referer cho API Gà Vàng (có thể đổi khi Gà Vàng đổi tên miền)
+GAVANG_REFERER = "https://gavang33.ac"
+
+# Endpoint API Gà Vàng
+GAVANG_API_URL = "https://gavangtv-api.adviceme.io/api/v1/matches?webType=gavang"
+
+# Đường dẫn GitHub Raw chứa nguồn dữ liệu gốc (base_channels.m3u & avatars)
+GITHUB_RAW_BASE = "https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main"
+
+# Thời gian lưu cache tại Cloudflare Edge (giây) - Mặc định 180s (3 phút)
+CACHE_TTL = "180"
+
+# Lịch phát sóng EPG XML
+DEFAULT_EPG = "https://lichphatsong.io.vn/epg.xml"
+
+# User-Agent mặc định cho IPTV
+DEFAULT_UA = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
