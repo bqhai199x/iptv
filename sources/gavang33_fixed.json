@@ -1,0 +1,110 @@
+[
+  {
+    "rank": 1,
+    "nickName": "Gà Siêu Quỷ",
+    "slug": "ga_sieu_quy",
+    "logo_filename": "ga_sieu_quy.png",
+    "stream_id": "304565",
+    "hls_url": "https://live2.zktsva.app/live/304565.m3u8",
+    "flv_url": "https://live2.zktsva.app/live/304565.flv"
+  },
+  {
+    "rank": 2,
+    "nickName": "Gà Siêu Gáy",
+    "slug": "ga_sieu_gay",
+    "logo_filename": "ga_sieu_gay.jpg",
+    "stream_id": "294335",
+    "hls_url": "https://live2.zktsva.app/live/294335.m3u8",
+    "flv_url": "https://live2.zktsva.app/live/294335.flv"
+  },
+  {
+    "rank": 3,
+    "nickName": "Gà Siêu Péo",
+    "slug": "ga_sieu_peo",
+    "logo_filename": "ga_sieu_peo.png",
+    "stream_id": "303098",
+    "hls_url": "https://live2.zktsva.app/live/303098.m3u8",
+    "flv_url": "https://live2.zktsva.app/live/303098.flv"
+  },
+  {
+    "rank": 4,
+    "nickName": "Gà Siêu Kiêu",
+    "slug": "ga_sieu_kieu",
+    "logo_filename": "ga_sieu_kieu.png",
+    "stream_id": "741294",
+    "hls_url": "https://live2.zktsva.app/live/741294.m3u8",
+    "flv_url": "https://live2.zktsva.app/live/741294.flv"
+  },
+  {
+    "rank": 5,
+    "nickName": "Gà Siêu Tồ",
+    "slug": "ga_sieu_to",
+    "logo_filename": "ga_sieu_to.jpg",
+    "stream_id": "796315",
+    "hls_url": "https://live2.zktsva.app/live/796315.m3u8",
+    "flv_url": "https://live2.zktsva.app/live/796315.flv"
+  },
+  {
+    "rank": 6,
+    "nickName": "Gà Siêu Nhí",
+    "slug": "ga_sieu_nhi",
+    "logo_filename": "ga_sieu_nhi.jpg",
+    "stream_id": "301263",
+    "hls_url": "https://live2.zktsva.app/live/301263.m3u8",
+    "flv_url": "https://live2.zktsva.app/live/301263.flv"
+  },
+  {
+    "rank": 7,
+    "nickName": "Gà Siêu Mõm",
+    "slug": "ga_sieu_mom",
+    "logo_filename": "ga_sieu_mom.png",
+    "stream_id": "300523",
+    "hls_url": "https://live2.zktsva.app/live/300523.m3u8",
+    "flv_url": "https://live2.zktsva.app/live/300523.flv"
+  },
+  {
+    "rank": 8,
+    "nickName": "Gà Siêu Bệu",
+    "slug": "ga_sieu_beu",
+    "logo_filename": "ga_sieu_beu.jpg",
+    "stream_id": "289650",
+    "hls_url": "https://live2.zktsva.app/live/289650.m3u8",
+    "flv_url": "https://live2.zktsva.app/live/289650.flv"
+  },
+  {
+    "rank": 9,
+    "nickName": "Gà Ô Long",
+    "slug": "ga_o_long",
+    "logo_filename": "ga_o_long.png",
+    "stream_id": "432017",
+    "hls_url": "https://live2.zktsva.app/live/432017.m3u8",
+    "flv_url": "https://live2.zktsva.app/live/432017.flv"
+  },
+  {
+    "rank": 10,
+    "nickName": "Gà Siêu Tốc",
+    "slug": "ga_sieu_toc",
+    "logo_filename": "ga_sieu_toc.jpg",
+    "stream_id": "307240",
+    "hls_url": "https://live2.zktsva.app/live/307240.m3u8",
+    "flv_url": "https://live2.zktsva.app/live/307240.flv"
+  },
+  {
+    "rank": 11,
+    "nickName": "Gà Siêu Ngố",
+    "slug": "ga_sieu_ngo",
+    "logo_filename": "ga_sieu_ngo.jpg",
+    "stream_id": "301238",
+    "hls_url": "https://live2.zktsva.app/live/301238.m3u8",
+    "flv_url": "https://live2.zktsva.app/live/301238.flv"
+  },
+  {
+    "rank": 12,
+    "nickName": "Gà Siêu Son",
+    "slug": "ga_sieu_son",
+    "logo_filename": "ga_sieu_son.png",
+    "stream_id": "306290",
+    "hls_url": "https://live2.zktsva.app/live/306290.m3u8",
+    "flv_url": "https://live2.zktsva.app/live/306290.flv"
+  }
+]

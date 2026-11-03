@@ -1,0 +1,28 @@
+#EXTM3U name="⚽ XÔI CHÈ TV (BLV Tiếng Việt)" url-tvg="https://lichphatsong.io.vn/epg.xml"
+#EXTINF:-1 group-title="🔴 ⚽ 🏐 XÔI CHÈ TV" tvg-logo="https://xoiche2.live/images/logo-220.webp", BLV Xôi Xéo
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36
+https://live.khoga.space/live/livehub1/index.m3u8
+#EXTINF:-1 group-title="🔴 ⚽ 🏐 XÔI CHÈ TV" tvg-logo="https://xoiche2.live/images/logo-220.webp", BLV Xôi Gà
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36
+https://live.khoga.space/live/livehub2/index.m3u8
+#EXTINF:-1 group-title="🔴 ⚽ 🏐 XÔI CHÈ TV" tvg-logo="https://xoiche2.live/images/logo-220.webp", BLV Xôi Xoài
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36
+https://live.khoga.space/live/livehub3/index.m3u8
+#EXTINF:-1 group-title="🔴 ⚽ 🏐 XÔI CHÈ TV" tvg-logo="https://xoiche2.live/images/logo-220.webp", BLV Gà Rừng
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36
+https://live.khoga.space/live/livehub4/index.m3u8
+#EXTINF:-1 group-title="🔴 ⚽ 🏐 XÔI CHÈ TV" tvg-logo="https://xoiche2.live/images/logo-220.webp", BLV Khô Chè
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36
+https://live.khoga.space/live/livehub5/index.m3u8
+#EXTINF:-1 group-title="🔴 ⚽ 🏐 XÔI CHÈ TV" tvg-logo="https://xoiche2.live/images/logo-220.webp", BLV Gà Tre
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36
+https://live.khoga.space/live/livehub6/index.m3u8
+#EXTINF:-1 group-title="🔴 ⚽ 🏐 XÔI CHÈ TV" tvg-logo="https://xoiche2.live/images/logo-220.webp", BLV Tam Mao
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36
+https://live.khoga.space/live/livehub8/index.m3u8
+#EXTINF:-1 group-title="🔴 ⚽ 🏐 XÔI CHÈ TV" tvg-logo="https://xoiche2.live/images/logo-220.webp", BLV Khô Cay
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36
+https://live.khoga.space/live/livehub9/index.m3u8
+#EXTINF:-1 group-title="🔴 ⚽ 🏐 XÔI CHÈ TV" tvg-logo="https://xoiche2.live/images/logo-220.webp", BLV Tày
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36
+https://live.khoga.space/live/livehub10/index.m3u8
