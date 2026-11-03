@@ -360,10 +360,11 @@ function renderDashboard(host, liveMap, upcomingMap, blvList, envConfig) {
       .channel-grid { grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 18px; }
     }
 
-    .ch-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 14px; display: flex; align-items: center; gap: 14px; transition: all 0.2s ease; position: relative; }
+    .ch-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 14px; display: flex; align-items: center; gap: 14px; transition: all 0.2s ease; position: relative; cursor: pointer; }
     .ch-card:hover { background: var(--card-hover); border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.4); }
     .ch-card.is-live { border-left: 4px solid var(--red); background: #161e2e; }
     .ch-card.is-upcoming { border-left: 4px solid var(--amber); }
+    .ch-card.is-playing { border-color: var(--accent); box-shadow: 0 0 16px rgba(56, 189, 248, 0.4); }
     .ch-logo { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; background: #1e293b; border: 2px solid var(--border); flex-shrink: 0; }
     
     .ch-info { flex: 1; min-width: 0; }
@@ -447,7 +448,7 @@ function renderDashboard(host, liveMap, upcomingMap, blvList, envConfig) {
     </div>
     <div class="channel-grid">
       ${blvList.map(ch => `
-        <div class="ch-card ${ch.isLive ? 'is-live' : (ch.isUpcoming ? 'is-upcoming' : '')}">
+        <div id="card_${encodeURIComponent(ch.nickName)}" class="ch-card ${ch.isLive ? 'is-live' : (ch.isUpcoming ? 'is-upcoming' : '')}" onclick="playChannel('${ch.nickName.replace(/'/g, "\\'")}', 'hls')">
           <img class="ch-logo" src="${ch.logoUrl}" alt="${ch.nickName}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22><text y=%2222%22 font-size=%2222%22>⚽</text></svg>'">
           <div class="ch-info">
             <div class="tooltip-wrapper">
@@ -467,9 +468,9 @@ function renderDashboard(host, liveMap, upcomingMap, blvList, envConfig) {
               <span>BLV ${ch.nickName}</span>
             </div>
           </div>
-          <div class="ch-actions">
-            <button class="btn-ch-play btn-ch-hls" onclick="playChannel('${ch.nickName}', 'hls')" title="Xem luồng HLS (.m3u8)">▶ HLS</button>
-            <button class="btn-ch-play btn-ch-flv" onclick="playChannel('${ch.nickName}', 'flv')" title="Xem luồng FLV (.flv)">▶ FLV</button>
+          <div class="ch-actions" onclick="event.stopPropagation()">
+            <button class="btn-ch-play btn-ch-hls" onclick="playChannel('${ch.nickName.replace(/'/g, "\\'")}', 'hls')" title="Xem luồng HLS (.m3u8)">▶ HLS</button>
+            <button class="btn-ch-play btn-ch-flv" onclick="playChannel('${ch.nickName.replace(/'/g, "\\'")}', 'flv')" title="Xem luồng FLV (.flv)">▶ FLV</button>
           </div>
         </div>
       `).join("")}
@@ -530,6 +531,10 @@ function renderDashboard(host, liveMap, upcomingMap, blvList, envConfig) {
       currentSource = source || "hls";
       const ch = CHANNELS_MAP[nick];
       if (!ch) return;
+
+      document.querySelectorAll('.ch-card').forEach(c => c.classList.remove('is-playing'));
+      const activeCard = document.getElementById('card_' + encodeURIComponent(nick));
+      if (activeCard) activeCard.classList.add('is-playing');
 
       switcher.style.display = "flex";
       pTitle.innerText = ch.displayName;
