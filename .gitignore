@@ -1,5 +1,43 @@
+# Python
 __pycache__/
-*.pyc
-*.tmp
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+build/
+dist/
+*.egg-info/
+.pytest_cache/
+
+# Cloudflare Workers & Node.js
+node_modules/
+.wrangler/
+.dev.vars
+.dev.vars.*
+.mf/
+package-lock.json
+
+# Editor & IDE configurations
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# Operating System files
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+desktop.ini
+
+# Logs & Temporary files
+*.log
+*.tmp
+*.bak
