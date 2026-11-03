@@ -314,20 +314,17 @@ function renderDashboard(host, liveMap, upcomingMap, blvList, envConfig) {
     }
 
     header { text-align: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
-    h1 { color: var(--accent); margin: 0 0 8px 0; font-size: 26px; font-weight: 800; }
-    .meta { color: var(--text-dim); font-size: 13px; display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
-    .meta b { color: var(--text); }
+    h1 { color: var(--accent); margin: 0; font-size: 26px; font-weight: 800; }
 
-    /* Web Player Section - Chuẩn 16:9, tự động co giãn theo viewport, không bị bè hay kéo dài */
+    /* Web Player Section - Chuẩn 16:9, chiếm trọn 100% chiều rộng container */
     .player-wrapper {
       background: #000;
       border: 1px solid var(--border);
       border-radius: 14px;
       overflow: hidden;
-      margin: 0 auto 28px auto;
+      margin-bottom: 28px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.7);
       width: 100%;
-      max-width: min(100%, calc((100vh - 240px) * 16 / 9), 1360px);
     }
     .video-container {
       position: relative;
@@ -423,12 +420,6 @@ function renderDashboard(host, liveMap, upcomingMap, blvList, envConfig) {
   <div class="container">
     <header>
       <h1>⚽ IPTV THỂ THAO & BLV TIẾNG VIỆT</h1>
-      <div class="meta">
-        <span>⚡ Cloudflare Edge Worker</span>
-        <span>🔴 Đang Live: <b>${liveCount} BLV</b></span>
-        <span>⏳ Sắp Đá (6h): <b>${upcomingCount} BLV</b></span>
-        <span>⏱️ Edge Cache: <b>${envConfig.CACHE_TTL}s</b></span>
-      </div>
     </header>
 
     <!-- Web Player -->
