@@ -180,12 +180,12 @@ function buildGavangChannels(blvList, liveMap, upcomingMap, avatarBaseUrl) {
       isLive = true;
       matchTitle = liveInfo.title;
       timeStr = liveInfo.timeStr;
-      displayName = `🔴 ${liveInfo.title} (${nick})`;
+      displayName = liveInfo.title;
     } else if (upcomingInfo) {
       isUpcoming = true;
       matchTitle = upcomingInfo.title;
       timeStr = upcomingInfo.timeStr;
-      displayName = `⏳ [${upcomingInfo.timeStr}] ${upcomingInfo.title} (${nick})`;
+      displayName = `[${upcomingInfo.timeStr}] ${upcomingInfo.title}`;
     }
 
     sv1.push({
@@ -285,9 +285,9 @@ function renderDashboard(host, liveMap, upcomingMap, blvList, envConfig) {
 <html lang="vi">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>⚽ IPTV BLV Tiếng Việt - Cloudflare Edge</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22><text y=%2226%22 font-size=%2226%22>⚽</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚽</text></svg>">
   <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.8/dist/hls.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mpegts.js@1.7.3/dist/mpegts.min.js"></script>
   <style>
@@ -303,75 +303,162 @@ function renderDashboard(host, liveMap, upcomingMap, blvList, envConfig) {
       --amber: #f59e0b;
       --red: #ef4444;
     }
-    * { box-sizing: border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px 24px; line-height: 1.5; }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      touch-action: manipulation;
+    }
+    html {
+      overflow-x: hidden !important;
+      width: 100% !important;
+      max-width: 100vw !important;
+    }
+    html, body {
+      touch-action: manipulation;
+      -webkit-text-size-adjust: 100%;
+      -webkit-tap-highlight-color: transparent;
+      overscroll-behavior-y: none;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 16px 20px;
+      line-height: 1.5;
+      overflow-x: hidden !important;
+      width: 100% !important;
+      max-width: 100vw !important;
+    }
     
     /* 2K Screen Max-width layout */
-    .container { max-width: 1400px; margin: 0 auto; }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
     @media (min-width: 2000px) {
-      .container { max-width: 1680px; padding: 30px 40px; }
-      body { padding: 30px 40px; }
+      .container { max-width: 1680px; padding: 24px 30px; }
+      body { padding: 24px 30px; }
     }
 
-    header { text-align: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
-    h1 { color: var(--accent); margin: 0; font-size: 26px; font-weight: 800; }
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
+    }
+    h1 {
+      color: var(--accent);
+      margin: 0;
+      font-size: 24px;
+      font-weight: 800;
+      word-break: break-word;
+    }
 
-    /* Web Player Section - Chuẩn 16:9, chiếm trọn 100% chiều rộng container */
+    /* Web Player Section - Chuẩn 16:9 */
     .player-wrapper {
       background: #000;
       border: 1px solid var(--border);
       border-radius: 14px;
       overflow: hidden;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.7);
       width: 100%;
+      max-width: 100%;
     }
     .video-container {
       position: relative;
       width: 100%;
+      max-width: 100%;
       aspect-ratio: 16 / 9;
       background: #070b12;
       display: flex;
       align-items: center;
       justify-content: center;
+      user-select: none;
+      -webkit-user-select: none;
+      overflow: hidden;
+      cursor: pointer;
     }
-    video { width: 100%; height: 100%; display: block; object-fit: contain; }
+    video { width: 100%; height: 100%; max-width: 100%; display: block; object-fit: contain; }
+
+    .player-bar {
+      background: var(--card-bg);
+      padding: 12px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      border-top: 1px solid var(--border);
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
+    }
+    .player-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      max-width: 100%;
+      flex: 1 1 240px;
+      overflow: hidden;
+    }
+    .player-title {
+      font-weight: 700;
+      font-size: 15px;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
+      flex: 1;
+    }
     
-    .player-bar { background: var(--card-bg); padding: 14px 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; border-top: 1px solid var(--border); }
-    .player-left { display: flex; align-items: center; gap: 10px; min-width: 260px; flex: 1; }
-    .player-title { font-weight: 700; font-size: 16px; color: #fff; }
-    
+    .player-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      max-width: 100%;
+    }
+
     /* Source Switcher in Player Bar */
-    .source-switcher { display: flex; align-items: center; gap: 8px; background: #0b1120; padding: 4px 8px; border-radius: 8px; border: 1px solid var(--border); }
-    .source-label { font-size: 12px; color: var(--text-dim); font-weight: 600; }
-    .btn-source { background: #1e293b; color: var(--text-dim); border: 1px solid var(--border); padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 700; transition: all 0.2s; }
+    .source-switcher { display: flex; align-items: center; gap: 6px; background: #0b1120; padding: 3px 6px; border-radius: 8px; border: 1px solid var(--border); }
+    .source-label { font-size: 11px; color: var(--text-dim); font-weight: 600; padding: 0 4px; }
+    .btn-source { background: #1e293b; color: var(--text-dim); border: 1px solid var(--border); padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 700; transition: all 0.2s; white-space: nowrap; display: inline-flex; align-items: center; gap: 4px; }
     .btn-source:hover { background: #334155; color: #fff; }
     .btn-source.active { background: #2563eb; color: #fff; border-color: #38bdf8; box-shadow: 0 0 10px rgba(37,99,235,0.5); }
 
-    .player-tag { font-size: 11px; padding: 3px 10px; border-radius: 4px; font-weight: 800; letter-spacing: 0.5px; }
+    .player-tag { font-size: 11px; padding: 3px 10px; border-radius: 4px; font-weight: 800; letter-spacing: 0.5px; flex-shrink: 0; }
     .tag-live { background: #dc2626; color: #fff; }
     .tag-upcoming { background: #d97706; color: #fff; }
     .tag-ready { background: #0284c7; color: #fff; }
 
     /* Channel Cards Grid */
-    .section-title { font-size: 19px; font-weight: 700; margin: 28px 0 14px 0; color: #f8fafc; display: flex; align-items: center; justify-content: space-between; }
-    .channel-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin-bottom: 28px; }
+    .section-title { font-size: 18px; font-weight: 700; margin: 24px 0 12px 0; color: #f8fafc; display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 100%; overflow: hidden; }
+    .channel-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 14px; margin-bottom: 24px; width: 100%; max-width: 100%; }
     @media (min-width: 2000px) {
       .channel-grid { grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 18px; }
     }
 
-    .ch-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 14px; display: flex; align-items: center; gap: 14px; transition: all 0.2s ease; position: relative; cursor: pointer; }
+    .ch-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; display: flex; align-items: center; gap: 12px; transition: all 0.2s ease; position: relative; cursor: pointer; width: 100%; max-width: 100%; min-width: 0; overflow: hidden; }
     .ch-card:hover { background: var(--card-hover); border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.4); }
     .ch-card.is-live { border-left: 4px solid var(--red); background: #161e2e; }
     .ch-card.is-upcoming { border-left: 4px solid var(--amber); }
     .ch-card.is-playing { border-color: var(--accent); box-shadow: 0 0 16px rgba(56, 189, 248, 0.4); }
-    .ch-logo { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; background: #1e293b; border: 2px solid var(--border); flex-shrink: 0; }
+    .ch-logo { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; background: #1e293b; border: 2px solid var(--border); flex-shrink: 0; }
     
-    .ch-info { flex: 1; min-width: 0; }
+    .ch-info { flex: 1; min-width: 0; overflow: hidden; }
 
     /* Match Label with Full Tooltip */
-    .tooltip-wrapper { position: relative; display: block; width: 100%; }
-    .ch-name { font-weight: 700; font-size: 14px; margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; color: #fff; }
+    .tooltip-wrapper { position: relative; display: block; width: 100%; min-width: 0; overflow: hidden; }
+    .ch-name { font-weight: 700; font-size: 14px; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; color: #fff; min-width: 0; }
     
     .custom-tooltip {
       visibility: hidden; opacity: 0; position: absolute; bottom: calc(100% + 10px); left: 0;
@@ -401,20 +488,115 @@ function renderDashboard(host, liveMap, upcomingMap, blvList, envConfig) {
 
     /* URL Generator Card */
     .generator-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 28px; }
-    .generator-card h3 { margin: 0 0 14px 0; font-size: 17px; color: var(--accent); }
-    .filter-options { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 16px; }
-    .filter-option { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text); background: #0f172a; padding: 8px 14px; border-radius: 6px; border: 1px solid var(--border); cursor: pointer; }
-    .filter-option input { cursor: pointer; }
+    .generator-card h3 { margin: 0 0 14px 0; font-size: 17px; color: var(--accent); line-height: 1.4; }
+    .filter-options { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .filter-option { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text); background: #0f172a; padding: 8px 14px; border-radius: 6px; border: 1px solid var(--border); cursor: pointer; user-select: none; }
+    .filter-option input { cursor: pointer; accent-color: #38bdf8; }
 
     /* Playlist URLs */
-    .url-item { background: #0b1120; border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-    .url-name { font-weight: 600; font-size: 14px; min-width: 220px; }
-    .url-box { flex: 1; font-family: monospace; font-size: 12px; color: #4ade80; background: #070b14; padding: 8px 12px; border-radius: 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .btn-copy { background: #2563eb; color: #fff; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 700; transition: background 0.2s; white-space: nowrap; }
+    .url-item { background: #0b1120; border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
+    .url-info { min-width: 220px; flex: 0 0 auto; display: flex; align-items: center; gap: 8px; }
+    .url-name { font-weight: 600; font-size: 14px; color: #fff; }
+    .url-badge { font-size: 11px; color: var(--text-dim); background: #1e293b; padding: 2px 7px; border-radius: 4px; white-space: nowrap; }
+    .url-actions { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
+    .url-box { flex: 1; min-width: 0; font-family: monospace; font-size: 12px; color: #4ade80; background: #070b14; padding: 8px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.06); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; user-select: all; -webkit-user-select: all; }
+    .btn-copy { background: #2563eb; color: #fff; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 700; transition: all 0.2s; white-space: nowrap; flex-shrink: 0; display: inline-flex; align-items: center; gap: 4px; }
     .btn-copy:hover { background: #1d4ed8; }
+    .btn-copy:active { transform: scale(0.96); }
+    .btn-copy.copied { background: #16a34a !important; color: #fff !important; }
 
-    .toast { position: fixed; bottom: 24px; right: 24px; background: #22c55e; color: #fff; padding: 12px 20px; border-radius: 8px; font-weight: 700; font-size: 13px; display: none; box-shadow: 0 4px 16px rgba(0,0,0,0.5); z-index: 1000; }
-    footer { text-align: center; margin-top: 36px; font-size: 13px; color: var(--text-dim); border-top: 1px solid var(--border); padding-top: 18px; }
+    /* Mobile Responsive Optimizations */
+    @media (max-width: 768px) {
+      body {
+        padding: 10px 8px;
+        overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+      }
+      header { margin-bottom: 14px; padding-bottom: 10px; width: 100%; overflow: hidden; }
+      h1 { font-size: 18px !important; }
+
+      .player-wrapper { border-radius: 10px; margin-bottom: 16px; width: 100%; max-width: 100%; }
+      .player-bar { padding: 8px 8px; gap: 8px; width: 100%; max-width: 100%; }
+      .player-left { width: 100%; max-width: 100%; min-width: 0; margin-bottom: 2px; overflow: hidden; }
+      .player-title { font-size: 13px; min-width: 0; flex: 1; }
+      .player-controls { width: 100%; max-width: 100%; justify-content: flex-end; gap: 6px; }
+      .source-switcher {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 2px 4px;
+      }
+      .source-label { display: none !important; }
+      .btn-source {
+        padding: 5px 8px;
+        font-size: 11px;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .section-title { font-size: 15px; margin: 18px 0 10px 0; width: 100%; max-width: 100%; overflow: hidden; }
+      .section-hint { display: none !important; }
+      .custom-tooltip { display: none !important; }
+      .channel-grid {
+        grid-template-columns: 100% !important;
+        gap: 10px;
+        margin-bottom: 20px;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: hidden;
+      }
+      .ch-card {
+        padding: 10px 10px;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        overflow: hidden !important;
+      }
+      .ch-info { min-width: 0 !important; overflow: hidden !important; }
+      .tooltip-wrapper { min-width: 0 !important; overflow: hidden !important; width: 100%; }
+      .ch-name { font-size: 13px; min-width: 0; }
+      .ch-logo { width: 42px; height: 42px; flex-shrink: 0; }
+
+      .generator-card { padding: 12px 10px; margin-bottom: 20px; width: 100%; max-width: 100%; overflow: hidden; }
+      .generator-card h3 { font-size: 14px; margin-bottom: 10px; }
+      .filter-options { flex-direction: column; gap: 6px; width: 100%; max-width: 100%; }
+      .filter-option { width: 100%; max-width: 100%; font-size: 12px; padding: 7px 10px; min-width: 0; }
+
+      .url-item {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        padding: 10px 10px;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        overflow: hidden;
+      }
+      .url-info {
+        min-width: 0;
+        width: 100%;
+        justify-content: space-between;
+      }
+      .url-name { font-size: 13px; }
+      .url-actions {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+      }
+      .url-box {
+        font-size: 11px;
+        padding: 7px 10px;
+        min-width: 0;
+      }
+      .btn-copy {
+        padding: 7px 12px;
+        font-size: 11px;
+      }
+    }
+
+    .toast { position: fixed; bottom: 20px; right: 20px; left: 20px; max-width: 360px; margin: 0 auto; text-align: center; background: #16a34a; color: #fff; padding: 10px 18px; border-radius: 8px; font-weight: 700; font-size: 13px; display: none; box-shadow: 0 4px 16px rgba(0,0,0,0.6); z-index: 1000; }
+    footer { text-align: center; margin-top: 30px; font-size: 12px; color: var(--text-dim); border-top: 1px solid var(--border); padding-top: 16px; }
   </style>
 </head>
 <body>
@@ -425,7 +607,7 @@ function renderDashboard(host, liveMap, upcomingMap, blvList, envConfig) {
 
     <!-- Web Player -->
     <div class="player-wrapper">
-      <div class="video-container">
+      <div class="video-container" id="videoContainer">
         <video id="videoPlayer" controls playsinline></video>
       </div>
       <div class="player-bar">
@@ -433,10 +615,12 @@ function renderDashboard(host, liveMap, upcomingMap, blvList, envConfig) {
           <span id="playerBadge" class="player-tag tag-ready">CHỌN KÊNH</span>
           <span id="playerTitle" class="player-title">Bấm vào bất kỳ kênh nào bên dưới để xem trực tiếp</span>
         </div>
-        <div class="source-switcher" id="sourceSwitcher" style="display:none;">
-          <span class="source-label">Source:</span>
-          <button id="btnSrcHls" class="btn-source" onclick="switchSource('hls')">⚡ Server 1 (HLS)</button>
-          <button id="btnSrcFlv" class="btn-source" onclick="switchSource('flv')">🚀 Server 2 (FLV)</button>
+        <div class="player-controls">
+          <div class="source-switcher" id="sourceSwitcher" style="display:none;">
+            <span class="source-label">Source:</span>
+            <button id="btnSrcHls" class="btn-source" onclick="switchSource('hls')">⚡ SV1 (HLS)</button>
+            <button id="btnSrcFlv" class="btn-source" onclick="switchSource('flv')">🚀 SV2 (FLV)</button>
+          </div>
         </div>
       </div>
     </div>
@@ -444,12 +628,12 @@ function renderDashboard(host, liveMap, upcomingMap, blvList, envConfig) {
     <!-- Quick Play Grid (12 BLV Gà Vàng) -->
     <div class="section-title">
       <span>📺 Kênh Gà Vàng 33</span>
-      <span style="font-size:13px; color:var(--text-dim);">Hover để xem đầy đủ thông tin trận đấu</span>
+      <span class="section-hint" style="font-size:13px; color:var(--text-dim);">Hover để xem đầy đủ thông tin trận đấu</span>
     </div>
     <div class="channel-grid">
       ${blvList.map(ch => `
         <div id="card_${encodeURIComponent(ch.nickName)}" class="ch-card ${ch.isLive ? 'is-live' : (ch.isUpcoming ? 'is-upcoming' : '')}" onclick="playChannel('${ch.nickName.replace(/'/g, "\\'")}', 'hls')">
-          <img class="ch-logo" src="${ch.logoUrl}" alt="${ch.nickName}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22><text y=%2222%22 font-size=%2222%22>⚽</text></svg>'">
+          <img class="ch-logo" src="${ch.logoUrl}" alt="${ch.nickName}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚽</text></svg>'">
           <div class="ch-info">
             <div class="tooltip-wrapper">
               <div class="ch-name">${ch.displayName}</div>
@@ -497,9 +681,14 @@ function renderDashboard(host, liveMap, upcomingMap, blvList, envConfig) {
       <div id="linksContainer">
         ${endpoints.map(ep => `
           <div class="url-item">
-            <div class="url-name">${ep.title}</div>
-            <div class="url-box" id="url_${ep.name}">${host}${ep.path}</div>
-            <button class="btn-copy" onclick="copyLink('url_${ep.name}')">Sao Chép</button>
+            <div class="url-info">
+              <span class="url-name">${ep.title}</span>
+              <span class="url-badge">${ep.count}</span>
+            </div>
+            <div class="url-actions">
+              <div class="url-box" id="url_${ep.name}">${host}${ep.path}</div>
+              <button class="btn-copy" onclick="copyLink('url_${ep.name}', this)">Sao Chép</button>
+            </div>
           </div>
         `).join("")}
       </div>
@@ -635,12 +824,143 @@ function renderDashboard(host, liveMap, upcomingMap, blvList, envConfig) {
       });
     }
 
-    function copyLink(id) {
+    // Toast notification
+    function showToast(msg) {
+      const toast = document.getElementById("toast");
+      if (!toast) return;
+      toast.innerText = msg || "Đã sao chép link!";
+      toast.style.display = "block";
+      clearTimeout(window.toastTimer);
+      window.toastTimer = setTimeout(() => {
+        toast.style.display = "none";
+      }, 2000);
+    }
+
+    // Bulletproof copy function across desktop & mobile
+    async function copyToClipboard(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        try {
+          await navigator.clipboard.writeText(text);
+          return true;
+        } catch (e) {
+          console.warn("navigator.clipboard failed, attempting fallback:", e);
+        }
+      }
+      return new Promise((resolve, reject) => {
+        try {
+          const textArea = document.createElement("textarea");
+          textArea.value = text;
+          textArea.style.position = "fixed";
+          textArea.style.top = "0";
+          textArea.style.left = "-9999px";
+          textArea.style.opacity = "0";
+          textArea.setAttribute("readonly", "");
+          document.body.appendChild(textArea);
+
+          if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
+            const range = document.createRange();
+            range.selectNodeContents(textArea);
+            const sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+            textArea.setSelectionRange(0, 999999);
+          } else {
+            textArea.select();
+            textArea.setSelectionRange(0, 999999);
+          }
+
+          const successful = document.execCommand("copy");
+          document.body.removeChild(textArea);
+          if (successful) resolve(true);
+          else reject(new Error("execCommand failed"));
+        } catch (err) {
+          reject(err);
+        }
+      });
+    }
+
+    function copyLink(id, btn) {
       const el = document.getElementById(id);
-      navigator.clipboard.writeText(el.innerText).then(() => {
-        const toast = document.getElementById("toast");
-        toast.style.display = "block";
-        setTimeout(() => toast.style.display = "none", 2000);
+      if (!el) return;
+      const text = el.innerText.trim();
+
+      copyToClipboard(text).then(() => {
+        showToast("✓ Đã sao chép link IPTV thành công!");
+        if (btn) {
+          const originalText = btn.innerText;
+          btn.innerText = "✓ Đã chép!";
+          btn.classList.add("copied");
+          setTimeout(() => {
+            btn.innerText = originalText;
+            btn.classList.remove("copied");
+          }, 1800);
+        }
+      }).catch(() => {
+        window.prompt("Sao chép link thủ công bên dưới:", text);
+      });
+    }
+
+    // Prevent double-click zoom on mobile body
+    document.addEventListener("dblclick", function(e) {
+      if (e.target.closest("#videoContainer") || e.target.closest("video")) return;
+      e.preventDefault();
+    }, { passive: false });
+
+    // Silent Background Fullscreen / Expand Handler (No UI buttons or popups)
+    function toggleFullscreen() {
+      const container = document.getElementById("videoContainer");
+      const video = document.getElementById("videoPlayer");
+      const isFs = document.fullscreenElement || 
+                   document.webkitFullscreenElement || 
+                   document.mozFullScreenElement || 
+                   document.msFullscreenElement ||
+                   (video && video.webkitDisplayingFullscreen);
+
+      if (!isFs) {
+        if (container && container.requestFullscreen) {
+          container.requestFullscreen().catch(() => {
+            if (video && video.webkitEnterFullscreen) video.webkitEnterFullscreen();
+            else if (video && video.requestFullscreen) video.requestFullscreen();
+          });
+        } else if (video && video.webkitEnterFullscreen) {
+          video.webkitEnterFullscreen();
+        } else if (container && container.webkitRequestFullscreen) {
+          container.webkitRequestFullscreen();
+        } else if (video && video.requestFullscreen) {
+          video.requestFullscreen();
+        }
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        } else if (video && video.webkitExitFullscreen) {
+          video.webkitExitFullscreen();
+        }
+      }
+    }
+
+    // Handle double-click & double-tap on video player quietly in background
+    const vContainer = document.getElementById("videoContainer");
+    if (vContainer) {
+      // Desktop double click
+      vContainer.addEventListener("dblclick", function(e) {
+        e.preventDefault();
+        toggleFullscreen();
+      });
+
+      // Mobile double tap
+      let lastVideoTapTime = 0;
+      vContainer.addEventListener("touchend", function(e) {
+        const now = Date.now();
+        const diff = now - lastVideoTapTime;
+        if (diff > 40 && diff < 320) {
+          e.preventDefault();
+          toggleFullscreen();
+          lastVideoTapTime = 0;
+        } else {
+          lastVideoTapTime = now;
+        }
       });
     }
   </script>
@@ -796,7 +1116,7 @@ export default {
         for (const [nick, info] of Object.entries(liveMap)) {
           if (updatedExtinf.includes(nick)) {
             const regex = new RegExp(`,\\s*(BLV\\s+)?${nick}\\b`, "g");
-            updatedExtinf = updatedExtinf.replace(regex, `, 🔴 ${info.title} (${nick})`);
+            updatedExtinf = updatedExtinf.replace(regex, `, ${info.title}`);
             isLive = true;
             break;
           }
@@ -807,7 +1127,7 @@ export default {
           for (const [nick, info] of Object.entries(upcomingMap)) {
             if (updatedExtinf.includes(nick)) {
               const regex = new RegExp(`,\\s*(BLV\\s+)?${nick}\\b`, "g");
-              updatedExtinf = updatedExtinf.replace(regex, `, ⏳ [${info.timeStr}] ${info.title} (${nick})`);
+              updatedExtinf = updatedExtinf.replace(regex, `, [${info.timeStr}] ${info.title}`);
               isUpcoming = true;
               break;
             }

@@ -40,7 +40,8 @@ Tổng hợp các luồng phát trực tiếp Thể thao & Bình luận viên (B
 | **🥣 Xôi Chè TV** | 9 | HLS | [`xoiche.m3u`](https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/xoiche.m3u) | [`xoiche`](https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/xoiche) |
 
 > [!NOTE]
-> - Các danh mục **gv**, **gv_sv1** và **gv_sv2** được sắp xếp cố định theo thứ tự bảng xếp hạng BLV, tích hợp sẵn logo đại diện và tự động hiển thị tên trận đấu khi đang phát trực tiếp.
+> - Các file nguồn trong kho lưu trữ lưu trữ danh sách BLV gốc chuẩn, cố định theo bảng xếp hạng nội bộ và tích hợp sẵn logo đại diện.
+> - Toàn bộ tính năng đồng bộ tên trận đấu theo thời gian thực (Real-time), ưu tiên kênh LIVE lên đầu và lịch thi đấu được **xử lý tự động 100% qua Cloudflare Worker**.
 > - Nếu ứng dụng IPTV của bạn không nhận link có đuôi `.m3u`, hãy dùng link **Direct File (Không đuôi)**.
 
 <details>
@@ -123,17 +124,13 @@ Màn hình console sẽ hiển thị địa chỉ IP nội bộ (Ví dụ: `http
 
 ```text
 iptv/
-├── .github/workflows/       # Workflow GitHub Actions (Trigger thủ công khi cần)
-│   └── update-playlist.yml
 ├── assets/blv/              # Logo và avatar đại diện của từng BLV
-├── cloudflare/              # Mã nguồn & cấu hình Cloudflare Worker (Khuyên dùng)
+├── cloudflare/              # Mã nguồn & cấu hình Cloudflare Worker (Xử lý Real-time)
 │   ├── worker.js            # Serverless M3U Generator với Edge Cache & Dashboard
 │   ├── wrangler.toml        # Cấu hình biến môi trường động (GAVANG_REFERER, TTL...)
 │   └── README.md            # Hướng dẫn chi tiết triển khai Worker
-├── scripts/                 # Script Python cập nhật danh sách offline
-│   └── update.py
 ├── sources/                 # Dữ liệu kênh cơ sở và cấu hình BLV
-│   ├── base_channels.m3u    # 137 kênh thể thao gốc
+│   ├── base_channels.m3u    # 137 kênh thể thao gốc chuẩn
 │   └── gavang33_fixed.json  # Cấu hình 12 BLV Gà Vàng cố định
 ├── server.py                # Máy chủ Web nội bộ LAN phục vụ phát sóng gia đình
 ├── .gitignore               # Cấu hình bỏ qua các file tạm, cache, môi trường ảo
