@@ -6,22 +6,48 @@ Tổng hợp các luồng phát trực tiếp Thể thao & Bình luận viên (B
 
 ## 🔗 1. DANH SÁCH LINK NGUỒN
 
-Copy đường link tương ứng để thêm vào ứng dụng IPTV của bạn:
+*(Nhấp chuột phải hoặc nhấn giữ vào link để chọn **Sao chép địa chỉ liên kết / Copy link address**)*
 
 | Tên Danh Mục | Kênh | Định Dạng | Link M3U (`.m3u`) | Direct File (Không đuôi) |
-| :--- | :---: | :---: | :--- | :--- |
-| **⚽ Tổng Hợp BLV** | 137 | HLS / FLV | `https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/sport.m3u` | `https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/sport` |
-| **🐔 Gà Vàng 33 (SV1)** | 12 | HLS | `https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/gv_sv1.m3u` | `https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/gv_sv1` |
-| **🐔 Gà Vàng 33 (SV2)** | 12 | FLV | `https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/gv_sv2.m3u` | `https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/gv_sv2` |
-| **🐔 Gà Vàng 33 (Gốc)** | 21 | HLS / FLV | `https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/gavang33.m3u` | `https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/gavang33` |
-| **🐔 Gà Vàng 24H** | 18 | FLV | `https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/gavang24.m3u` | `https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/gavang24` |
-| **🥤 Cola TV** | 79 | HLS / FLV | `https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/cola.m3u` | `https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/cola` |
-| **🏟️ Khán Đài TV** | 10 | HLS | `https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/khandai.m3u` | `https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/khandai` |
-| **🥣 Xôi Chè TV** | 9 | HLS | `https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/xoiche.m3u` | `https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/xoiche` |
+| :--- | :---: | :---: | :---: | :---: |
+| **⚽ Tổng Hợp BLV** | 137 | HLS / FLV | [`sport.m3u`](https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/sport.m3u) | [`sport`](https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/sport) |
+| **🐔 Gà Vàng 33 (Gộp)** | 24 | HLS + FLV | [`gv.m3u`](https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/gv.m3u) | [`gv`](https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/gv) |
+| **🐔 Gà Vàng 33 (SV1)** | 12 | HLS | [`gv_sv1.m3u`](https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/gv_sv1.m3u) | [`gv_sv1`](https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/gv_sv1) |
+| **🐔 Gà Vàng 33 (SV2)** | 12 | FLV | [`gv_sv2.m3u`](https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/gv_sv2.m3u) | [`gv_sv2`](https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/gv_sv2) |
+| **🐔 Gà Vàng 33 (Gốc)** | 21 | HLS / FLV | [`gavang33.m3u`](https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/gavang33.m3u) | [`gavang33`](https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/gavang33) |
+| **🐔 Gà Vàng 24H** | 18 | FLV | [`gavang24.m3u`](https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/gavang24.m3u) | [`gavang24`](https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/gavang24) |
+| **🥤 Cola TV** | 79 | HLS / FLV | [`cola.m3u`](https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/cola.m3u) | [`cola`](https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/cola) |
+| **🏟️ Khán Đài TV** | 10 | HLS | [`khandai.m3u`](https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/khandai.m3u) | [`khandai`](https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/khandai) |
+| **🥣 Xôi Chè TV** | 9 | HLS | [`xoiche.m3u`](https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/xoiche.m3u) | [`xoiche`](https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/xoiche) |
 
 > [!NOTE]
-> - Hai danh mục **gv_sv1** và **gv_sv2** được sắp xếp cố định theo thứ tự bảng xếp hạng BLV, kèm logo đại diện và tự động hiển thị tên trận đấu khi đang phát trực tiếp.
+> - Các danh mục **gv**, **gv_sv1** và **gv_sv2** được sắp xếp cố định theo thứ tự bảng xếp hạng BLV, kèm logo đại diện và tự động hiển thị tên trận đấu khi đang phát trực tiếp.
 > - Nếu ứng dụng không nhận link có đuôi `.m3u`, hãy dùng link **Direct File**.
+
+<details>
+<summary>📋 <b>Xem danh sách đường dẫn URL đầy đủ (dễ copy hàng loạt)</b></summary>
+
+```text
+https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/sport.m3u
+https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/sport
+https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/gv.m3u
+https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/gv
+https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/gv_sv1.m3u
+https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/gv_sv1
+https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/gv_sv2.m3u
+https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/gv_sv2
+https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/gavang33.m3u
+https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/gavang33
+https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/gavang24.m3u
+https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/gavang24
+https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/cola.m3u
+https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/cola
+https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/khandai.m3u
+https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/khandai
+https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/xoiche.m3u
+https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/xoiche
+```
+</details>
 
 ---
 
@@ -30,7 +56,7 @@ Copy đường link tương ứng để thêm vào ứng dụng IPTV của bạn
 ### 1. TiviMate IPTV (Android TV)
 1. Mở **TiviMate** ➔ **Cài đặt (Settings)** ➔ **Danh sách phát (Playlists)** ➔ **Thêm danh sách phát (Add playlist)**.
 2. Chọn **Danh sách M3U (M3U playlist)**.
-3. Dán link nguồn (ví dụ: `https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/gv_sv1.m3u`).
+3. Dán link nguồn (ví dụ: `https://raw.githubusercontent.com/bqhai199x/iptv/refs/heads/main/gv.m3u`).
 4. Đặt tên danh sách và bật **Tự động cập nhật danh sách khi khởi động (Auto-update playlist on app start)**.
 
 > [!TIP]

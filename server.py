@@ -70,6 +70,14 @@ class IPTVHandler(http.server.SimpleHTTPRequestHandler):
 
     <h2>🐔 2. GÀ VÀNG 33 (SERVER 1 & SERVER 2)</h2>
     <div class="card">
+        <h3>🔴 ⚽ GÀ VÀNG 33 - GỘP 2 SERVER (gv) <span class="badge">24 kênh (HLS & FLV)</span></h3>
+        <p>Gộp toàn bộ 24 kênh của Server 1 và Server 2, giữ nguyên xếp hạng, logo BLV và tên trận đấu live.</p>
+        <span class="url">http://{ip}:{PORT}/gv.m3u</span>
+        <a href="/gv.m3u" download>Tải file .m3u</a>
+        <a href="/gv" download>Direct File (không đuôi)</a>
+    </div>
+
+    <div class="card">
         <h3>🔴 ⚽ GÀ VÀNG 33 - SERVER 1 (gv_sv1) <span class="badge-cat">12 kênh HLS</span></h3>
         <p>Danh sách 12 kênh HLS theo bảng xếp hạng, logo BLV nội bộ và tự động hiển thị tên trận đấu khi phát sóng trực tiếp.</p>
         <span class="url">http://{ip}:{PORT}/gv_sv1.m3u</span>
@@ -137,13 +145,14 @@ def run():
         print("-" * 60)
         print("CÁC LINK M3U / DIRECT FILE (Cùng mạng Wi-Fi):")
         print(f"1. Tổng Hợp (Chuẩn M3U)      : http://{ip}:{PORT}/sport.m3u  (Direct: /sport)")
-        print(f"2. Gà Vàng 33 SV1 (gv_sv1)   : http://{ip}:{PORT}/gv_sv1.m3u  (Direct: /gv_sv1)")
-        print(f"3. Gà Vàng 33 SV2 (gv_sv2)   : http://{ip}:{PORT}/gv_sv2.m3u  (Direct: /gv_sv2)")
-        print(f"4. Gà Vàng 33 (21 kênh)      : http://{ip}:{PORT}/gavang33.m3u  (Direct: /gavang33)")
-        print(f"5. Gà Vàng 24H (18 kênh)     : http://{ip}:{PORT}/gavang24.m3u  (Direct: /gavang24)")
-        print(f"6. COLA TV (79 kênh)         : http://{ip}:{PORT}/cola.m3u  (Direct: /cola)")
-        print(f"7. KHÁN ĐÀI TV (10 kênh)     : http://{ip}:{PORT}/khandai.m3u  (Direct: /khandai)")
-        print(f"8. XÔI CHÈ TV (9 kênh)       : http://{ip}:{PORT}/xoiche.m3u  (Direct: /xoiche)")
+        print(f"2. Gà Vàng 33 Gộp (gv)       : http://{ip}:{PORT}/gv.m3u  (Direct: /gv)")
+        print(f"3. Gà Vàng 33 SV1 (gv_sv1)   : http://{ip}:{PORT}/gv_sv1.m3u  (Direct: /gv_sv1)")
+        print(f"4. Gà Vàng 33 SV2 (gv_sv2)   : http://{ip}:{PORT}/gv_sv2.m3u  (Direct: /gv_sv2)")
+        print(f"5. Gà Vàng 33 (21 kênh)      : http://{ip}:{PORT}/gavang33.m3u  (Direct: /gavang33)")
+        print(f"6. Gà Vàng 24H (18 kênh)     : http://{ip}:{PORT}/gavang24.m3u  (Direct: /gavang24)")
+        print(f"7. COLA TV (79 kênh)         : http://{ip}:{PORT}/cola.m3u  (Direct: /cola)")
+        print(f"8. KHÁN ĐÀI TV (10 kênh)     : http://{ip}:{PORT}/khandai.m3u  (Direct: /khandai)")
+        print(f"9. XÔI CHÈ TV (9 kênh)       : http://{ip}:{PORT}/xoiche.m3u  (Direct: /xoiche)")
         print("=" * 60)
         print("Nhấn Ctrl + C để dừng server.")
         try:

@@ -4,7 +4,7 @@ IPTV Playlist Generator
 Processes sports commentator streams and outputs standard M3U playlists and Direct Files:
 - Master: sport.m3u, sport (137 channels)
 - Categories: cola, gavang33, gavang24, khandai, xoiche (.m3u & Direct Files)
-- Gà Vàng 33 Servers: gv_sv1 (HLS), gv_sv2 (FLV) with dynamic match updates and local avatars
+- Gà Vàng 33 Servers: gv (SV1 & SV2 combo), gv_sv1 (HLS), gv_sv2 (FLV) with dynamic match updates and local avatars
 """
 
 import os
@@ -245,6 +245,7 @@ def generate_playlists():
     gv_sv1, gv_sv2 = build_gv_servers()
     write_playlist_files("gv_sv1", "⚽ GÀ VÀNG 33 - SERVER 1 HLS", gv_sv1)
     write_playlist_files("gv_sv2", "⚽ GÀ VÀNG 33 - SERVER 2 FLV", gv_sv2)
+    write_playlist_files("gv", "⚽ GÀ VÀNG 33 (SV1 & SV2)", gv_sv1 + gv_sv2)
 
     print("\nAll playlists and Direct Files generated successfully.")
 
